@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Users, Store, Package, DollarSign, ShoppingCart, AlertTriangle, Check, X, Eye, Shield, TrendingUp, FileText, Clock } from 'lucide-react';
+import WaslaLogo from '../components/WaslaLogo';
 import { products, orders, marketers, merchants, platformStats, auditLogs, supportTickets, payoutRequests, commissionLifecycle } from '../data/mockData';
 import type { OrderStatus, CommissionState } from '../data/mockData';
 
@@ -21,14 +22,15 @@ export default function AdminDashboard({ onNavigate }: AdminDashboardProps) {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-gradient-to-l from-purple-700 to-indigo-900 text-white shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <header className="bg-wasla-navy text-white shadow-lg">
+        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <button onClick={() => onNavigate('landing')} className="text-purple-200 hover:text-white"><ArrowRight className="w-5 h-5" /></button>
-            <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center"><Shield className="w-6 h-6 text-white" /></div>
-            <div><h1 className="text-lg font-bold">لوحة الإدارة المركزية</h1><p className="text-xs text-purple-200">وصلة | WASLA — التحكم والرقابة</p></div>
+            <button onClick={() => onNavigate('landing')} className="text-white/70 hover:text-white transition"><ArrowRight className="w-5 h-5" /></button>
+            <WaslaLogo variant="full" theme="dark" size="sm" />
+            <div className="h-8 w-px bg-white/20 mx-2"></div>
+            <div><h1 className="text-base font-bold">لوحة الإدارة المركزية</h1><p className="text-xs text-white/60">التحكم والرقابة على المنصة</p></div>
           </div>
-          <div className="flex items-center gap-2"><span className="text-sm text-purple-200">المدير العام</span><div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center font-bold text-sm">م</div></div>
+          <div className="flex items-center gap-2"><span className="text-sm text-white/70">المدير العام</span><div className="w-8 h-8 bg-wasla-teal/20 rounded-full flex items-center justify-center text-wasla-teal font-bold text-sm">م</div></div>
         </div>
       </header>
 
@@ -36,10 +38,10 @@ export default function AdminDashboard({ onNavigate }: AdminDashboardProps) {
         {/* KPIs */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
           {[
-            { label: 'GMV (إجمالي)', value: `$${platformStats.gmv}`, icon: <DollarSign className="w-5 h-5" />, color: 'bg-emerald-50 text-emerald-600' },
-            { label: 'صافي المبيعات المؤهلة', value: `$${platformStats.netEligibleSales}`, icon: <TrendingUp className="w-5 h-5" />, color: 'bg-blue-50 text-blue-600' },
-            { label: 'رسوم المنصة', value: `$${platformStats.platformFees.toFixed(2)}`, icon: <FileText className="w-5 h-5" />, color: 'bg-purple-50 text-purple-600' },
-            { label: 'معدل التسليم', value: `${platformStats.deliveryRate}%`, icon: <ShoppingCart className="w-5 h-5" />, color: 'bg-orange-50 text-orange-600' },
+            { label: 'GMV (إجمالي)', value: `$${platformStats.gmv}`, icon: <DollarSign className="w-5 h-5" />, color: 'bg-wasla-success/10 text-wasla-success' },
+            { label: 'صافي المبيعات المؤهلة', value: `$${platformStats.netEligibleSales}`, icon: <TrendingUp className="w-5 h-5" />, color: 'bg-wasla-teal/10 text-wasla-teal-dark' },
+            { label: 'رسوم المنصة', value: `$${platformStats.platformFees.toFixed(2)}`, icon: <FileText className="w-5 h-5" />, color: 'bg-wasla-gold/10 text-wasla-gold' },
+            { label: 'معدل التسليم', value: `${platformStats.deliveryRate}%`, icon: <ShoppingCart className="w-5 h-5" />, color: 'bg-wasla-navy/5 text-wasla-navy' },
           ].map((stat, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="bg-white rounded-xl p-4 shadow-sm">
               <div className={`w-10 h-10 ${stat.color} rounded-lg flex items-center justify-center mb-3`}>{stat.icon}</div>
@@ -69,7 +71,7 @@ export default function AdminDashboard({ onNavigate }: AdminDashboardProps) {
               { id: 'audit' as const, label: 'سجل التدقيق', icon: <Shield className="w-4 h-4" /> },
               { id: 'tickets' as const, label: 'الشكاوى', icon: <AlertTriangle className="w-4 h-4" /> },
             ].map(tab => (
-              <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`flex items-center gap-2 px-3 md:px-5 py-4 text-sm font-medium border-b-2 transition whitespace-nowrap ${activeTab === tab.id ? 'border-purple-500 text-purple-600' : 'border-transparent text-gray-500 hover:text-gray-700'}`}>
+              <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`flex items-center gap-2 px-3 md:px-5 py-4 text-sm font-medium border-b-2 transition whitespace-nowrap ${activeTab === tab.id ? 'border-wasla-teal text-wasla-teal-dark' : 'border-transparent text-wasla-muted hover:text-wasla-navy'}`}>
                 {tab.icon}{tab.label}
               </button>
             ))}

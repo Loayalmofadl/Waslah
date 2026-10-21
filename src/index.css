@@ -2,7 +2,7 @@
 
 @layer base {
   * {
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Noto Sans Arabic', 'Inter', sans-serif;
   }
   
   html {
@@ -15,22 +15,40 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* WASLA Brand Colors */
+  :root {
+    --wasla-navy: #15243A;
+    --wasla-teal: #00BFA6;
+    --wasla-teal-dark: #087A72;
+    --wasla-gold: #F4B740;
+    --wasla-canvas: #F4F7FB;
+    --wasla-muted: #5E6A7D;
+    --wasla-error: #C83D4D;
+    --wasla-success: #167A52;
+  }
+
+  /* Scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #f1f5f9;
+    background: #F4F7FB;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background: #5E6A7D;
     border-radius: 3px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+    background: #15243A;
+  }
+
+  /* Numbers and English text */
+  code, .font-mono, [dir="ltr"] {
+    font-family: 'Inter', 'Noto Sans Arabic', sans-serif;
   }
 }
 
@@ -41,4 +59,28 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  /* WASLA Color Utilities */
+  .text-wasla-navy { color: #15243A; }
+  .text-wasla-teal { color: #00BFA6; }
+  .text-wasla-teal-dark { color: #087A72; }
+  .text-wasla-gold { color: #F4B740; }
+  .text-wasla-muted { color: #5E6A7D; }
+  .text-wasla-error { color: #C83D4D; }
+  .text-wasla-success { color: #167A52; }
+
+  .bg-wasla-navy { background-color: #15243A; }
+  .bg-wasla-teal { background-color: #00BFA6; }
+  .bg-wasla-teal-dark { background-color: #087A72; }
+  .bg-wasla-gold { background-color: #F4B740; }
+  .bg-wasla-canvas { background-color: #F4F7FB; }
+  .bg-wasla-error { background-color: #C83D4D; }
+  .bg-wasla-success { background-color: #167A52; }
+
+  .border-wasla-navy { border-color: #15243A; }
+  .border-wasla-teal { border-color: #00BFA6; }
+  .border-wasla-teal-dark { border-color: #087A72; }
+  .border-wasla-gold { border-color: #F4B740; }
+  .border-wasla-error { border-color: #C83D4D; }
+  .border-wasla-success { border-color: #167A52; }
 }

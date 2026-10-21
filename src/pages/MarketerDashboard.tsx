@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, DollarSign, TrendingUp, Eye, ShoppingCart, Copy, Check, Search, Filter, Wallet, BarChart3 } from 'lucide-react';
+import WaslaLogo from '../components/WaslaLogo';
 import { products, orders, commissionLifecycle } from '../data/mockData';
 import type { CommissionState } from '../data/mockData';
 
@@ -37,16 +38,17 @@ export default function MarketerDashboard({ onNavigate, onProductClick }: Market
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <header className="bg-white shadow-sm border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <button onClick={() => onNavigate('landing')} className="text-gray-500 hover:text-gray-700"><ArrowRight className="w-5 h-5" /></button>
-            <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center"><TrendingUp className="w-6 h-6 text-white" /></div>
-            <div><h1 className="text-lg font-bold text-gray-800">بوابة المسوّق</h1><p className="text-xs text-gray-500">أحمد محمد</p></div>
+            <button onClick={() => onNavigate('landing')} className="text-wasla-muted hover:text-wasla-navy transition"><ArrowRight className="w-5 h-5" /></button>
+            <WaslaLogo variant="full" size="sm" />
+            <div className="h-8 w-px bg-gray-200 mx-2"></div>
+            <div><h1 className="text-base font-bold text-wasla-navy">بوابة المسوّق</h1><p className="text-xs text-wasla-muted">أحمد محمد</p></div>
           </div>
           <div className="flex items-center gap-2">
-            <div className="bg-emerald-50 px-3 py-1.5 rounded-lg"><span className="text-xs text-gray-500">رصيدك القابل للسحب: </span><span className="font-bold text-emerald-600">${payableEarnings.toFixed(2)}</span></div>
-            <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 font-bold text-sm">أ</div>
+            <div className="bg-wasla-success/10 px-3 py-1.5 rounded-lg"><span className="text-xs text-wasla-muted">رصيدك القابل للسحب: </span><span className="font-bold text-wasla-success">${payableEarnings.toFixed(2)}</span></div>
+            <div className="w-8 h-8 bg-wasla-teal/10 rounded-full flex items-center justify-center text-wasla-teal-dark font-bold text-sm">أ</div>
           </div>
         </div>
       </header>
@@ -54,10 +56,10 @@ export default function MarketerDashboard({ onNavigate, onProductClick }: Market
       <div className="max-w-7xl mx-auto px-4 py-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {[
-            { label: 'النقرات الصالحة', value: '5,400', icon: <Eye className="w-5 h-5" />, color: 'bg-blue-50 text-blue-600' },
-            { label: 'الطلبات المنسوبة', value: marketerOrders.length.toString(), icon: <ShoppingCart className="w-5 h-5" />, color: 'bg-purple-50 text-purple-600' },
-            { label: 'معدل التحويل', value: `${((marketerOrders.length / 5400) * 100).toFixed(2)}%`, icon: <BarChart3 className="w-5 h-5" />, color: 'bg-indigo-50 text-indigo-600' },
-            { label: 'الأرباح الكلية', value: `$${totalEarnings.toFixed(1)}`, icon: <DollarSign className="w-5 h-5" />, color: 'bg-emerald-50 text-emerald-600' },
+            { label: 'النقرات الصالحة', value: '5,400', icon: <Eye className="w-5 h-5" />, color: 'bg-wasla-navy/5 text-wasla-navy' },
+            { label: 'الطلبات المنسوبة', value: marketerOrders.length.toString(), icon: <ShoppingCart className="w-5 h-5" />, color: 'bg-wasla-teal/10 text-wasla-teal-dark' },
+            { label: 'معدل التحويل', value: `${((marketerOrders.length / 5400) * 100).toFixed(2)}%`, icon: <BarChart3 className="w-5 h-5" />, color: 'bg-wasla-gold/10 text-wasla-gold' },
+            { label: 'الأرباح الكلية', value: `$${totalEarnings.toFixed(1)}`, icon: <DollarSign className="w-5 h-5" />, color: 'bg-wasla-success/10 text-wasla-success' },
           ].map((stat, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="bg-white rounded-xl p-4 shadow-sm">
               <div className={`w-10 h-10 ${stat.color} rounded-lg flex items-center justify-center mb-3`}>{stat.icon}</div>
@@ -98,7 +100,7 @@ export default function MarketerDashboard({ onNavigate, onProductClick }: Market
               { id: 'earnings' as const, label: 'كشف العمولات', icon: <DollarSign className="w-4 h-4" /> },
               { id: 'withdrawals' as const, label: 'سحب الأرباح', icon: <Wallet className="w-4 h-4" /> },
             ].map(tab => (
-              <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition whitespace-nowrap ${activeTab === tab.id ? 'border-emerald-500 text-emerald-600' : 'border-transparent text-gray-500 hover:text-gray-700'}`}>
+              <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition whitespace-nowrap ${activeTab === tab.id ? 'border-wasla-teal text-wasla-teal-dark' : 'border-transparent text-wasla-muted hover:text-wasla-navy'}`}>
                 {tab.icon}{tab.label}
               </button>
             ))}
@@ -135,7 +137,7 @@ export default function MarketerDashboard({ onNavigate, onProductClick }: Market
                         <button onClick={() => copyLink(product.id)} className="flex-1 flex items-center justify-center gap-1 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition text-sm font-medium">
                           {copiedId === product.id ? <><Check className="w-3.5 h-3.5 text-emerald-500" /> تم النسخ</> : <><Copy className="w-3.5 h-3.5" /> نسخ الرابط</>}
                         </button>
-                        <button onClick={() => onProductClick(product.id)} className="flex-1 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition text-sm font-medium">سوّق هذا</button>
+                        <button onClick={() => onProductClick(product.id)} className="flex-1 py-2 bg-wasla-teal text-wasla-navy rounded-lg hover:bg-wasla-teal/90 transition text-sm font-bold">سوّق هذا</button>
                       </div>
                     </motion.div>
                   ))}
@@ -211,7 +213,7 @@ export default function MarketerDashboard({ onNavigate, onProductClick }: Market
                   <div className="text-sm text-gray-600 mb-1">الرصيد المتاح للسحب (المستحق)</div>
                   <div className="text-4xl font-bold text-emerald-700 mb-2">${payableEarnings.toFixed(2)}</div>
                   <div className="text-xs text-gray-500 mb-4">الحد الأدنى للسحب: $10 | المعلقة ($${pendingEarnings.toFixed(2)}) غير قابلة للسحب حتى اعتمادها</div>
-                  <button className="px-6 py-3 bg-emerald-600 text-white font-bold rounded-lg hover:bg-emerald-700 transition"><Wallet className="w-4 h-4 inline ml-2" />طلب سحب الأرباح</button>
+                  <button className="px-6 py-3 bg-wasla-teal text-wasla-navy font-bold rounded-lg hover:bg-wasla-teal/90 transition"><Wallet className="w-4 h-4 inline ml-2" />اطلب السحب</button>
                 </div>
                 <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6 text-sm text-yellow-800">
                   <strong>ملاحظة:</strong> لا يُعد طلب السحب مدفوعاً حتى يتم تسجيل تأكيد الدفع من مستخدم مالي مخول (PAY-03)

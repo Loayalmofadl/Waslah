@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Copy, Check, Share2, Download, MessageCircle, Facebook, Link2, Eye, ShoppingCart, TrendingUp, Clock, Shield, Truck, RotateCcw, FileText } from 'lucide-react';
+import WaslaLogo from '../components/WaslaLogo';
 import { products, commissionLifecycle } from '../data/mockData';
 
 interface ProductPageProps { productId: string | null; onBack: () => void; }
@@ -21,13 +22,15 @@ export default function ProductPage({ productId, onBack }: ProductPageProps) {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow-sm border-b sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <button onClick={onBack} className="text-gray-500 hover:text-gray-700"><ArrowRight className="w-5 h-5" /></button>
-            <div><h1 className="text-lg font-bold text-gray-800">صفحة المنتج</h1><p className="text-xs text-gray-500">أدوات التسويق والإسناد</p></div>
+            <button onClick={onBack} className="text-wasla-muted hover:text-wasla-navy transition"><ArrowRight className="w-5 h-5" /></button>
+            <WaslaLogo variant="full" size="sm" />
+            <div className="h-8 w-px bg-gray-200 mx-2"></div>
+            <div><h1 className="text-base font-bold text-wasla-navy">صفحة المنتج</h1><p className="text-xs text-wasla-muted">أدوات التسويق والإسناد</p></div>
           </div>
-          <div className="flex items-center gap-2"><span className="text-sm text-gray-500">المسوّق: أحمد محمد</span><div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 font-bold text-sm">أ</div></div>
+          <div className="flex items-center gap-2"><span className="text-sm text-wasla-muted">المسوّق: أحمد محمد</span><div className="w-8 h-8 bg-wasla-teal/10 rounded-full flex items-center justify-center text-wasla-teal-dark font-bold text-sm">أ</div></div>
         </div>
       </header>
 
@@ -72,10 +75,10 @@ export default function ProductPage({ productId, onBack }: ProductPageProps) {
             {/* Affiliate Link */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-white rounded-2xl shadow-sm p-6">
               <div className="flex items-center gap-2 mb-4"><Link2 className="w-5 h-5 text-indigo-600" /><h3 className="text-lg font-bold text-gray-800">رابط الإحالة الفريد</h3></div>
-              <div className="bg-gray-900 rounded-xl p-4 mb-4">
+              <div className="bg-wasla-navy rounded-xl p-4 mb-4">
                 <div className="flex items-center justify-between">
-                  <code className="text-emerald-400 text-sm font-mono break-all">{affiliateLink}</code>
-                  <button onClick={copyLink} className="flex items-center gap-1 px-3 py-1.5 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition text-sm whitespace-nowrap mr-4">
+                  <code className="text-wasla-teal text-sm font-mono break-all" dir="ltr">{affiliateLink}</code>
+                  <button onClick={copyLink} className="flex items-center gap-1 px-3 py-1.5 bg-wasla-teal text-wasla-navy rounded-lg hover:bg-wasla-teal/90 transition text-sm font-bold whitespace-nowrap mr-4">
                     {copied ? <><Check className="w-3.5 h-3.5" /> تم النسخ</> : <><Copy className="w-3.5 h-3.5" /> نسخ</>}
                   </button>
                 </div>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Package, DollarSign, TrendingUp, Eye, ShoppingCart, Plus, Edit, X, FileText, AlertCircle } from 'lucide-react';
+import WaslaLogo from '../components/WaslaLogo';
 import { products, orders, commissionLifecycle } from '../data/mockData';
 import type { CommissionState, OrderStatus } from '../data/mockData';
 
@@ -31,16 +32,17 @@ export default function MerchantDashboard({ onNavigate, onProductClick }: Mercha
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <header className="bg-white shadow-sm border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <button onClick={() => onNavigate('landing')} className="text-gray-500 hover:text-gray-700"><ArrowRight className="w-5 h-5" /></button>
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center"><Package className="w-6 h-6 text-white" /></div>
-            <div><h1 className="text-lg font-bold text-gray-800">بوابة التاجر</h1><p className="text-xs text-gray-500">متجر التقنية الحديثة</p></div>
+            <button onClick={() => onNavigate('landing')} className="text-wasla-muted hover:text-wasla-navy transition"><ArrowRight className="w-5 h-5" /></button>
+            <WaslaLogo variant="full" size="sm" />
+            <div className="h-8 w-px bg-gray-200 mx-2"></div>
+            <div><h1 className="text-base font-bold text-wasla-navy">بوابة التاجر</h1><p className="text-xs text-wasla-muted">متجر التقنية الحديثة</p></div>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-500">مرحباً، محمد</span>
-            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-sm">م</div>
+            <span className="text-sm text-wasla-muted">مرحباً، محمد</span>
+            <div className="w-8 h-8 bg-wasla-navy/10 rounded-full flex items-center justify-center text-wasla-navy font-bold text-sm">م</div>
           </div>
         </div>
       </header>
@@ -48,10 +50,10 @@ export default function MerchantDashboard({ onNavigate, onProductClick }: Mercha
       <div className="max-w-7xl mx-auto px-4 py-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {[
-            { label: 'المنتجات', value: merchantProducts.length, icon: <Package className="w-5 h-5" />, color: 'bg-blue-50 text-blue-600' },
-            { label: 'إجمالي المبيعات', value: `$${totalSales}`, icon: <DollarSign className="w-5 h-5" />, color: 'bg-emerald-50 text-emerald-600' },
-            { label: 'العمولات المدفوعة', value: `$${totalCommissions.toFixed(1)}`, icon: <TrendingUp className="w-5 h-5" />, color: 'bg-purple-50 text-purple-600' },
-            { label: 'معدل التسليم', value: `${((deliveredOrders.length / merchantOrders.length) * 100).toFixed(0)}%`, icon: <ShoppingCart className="w-5 h-5" />, color: 'bg-orange-50 text-orange-600' },
+            { label: 'المنتجات', value: merchantProducts.length, icon: <Package className="w-5 h-5" />, color: 'bg-wasla-navy/5 text-wasla-navy' },
+            { label: 'إجمالي المبيعات', value: `$${totalSales}`, icon: <DollarSign className="w-5 h-5" />, color: 'bg-wasla-success/10 text-wasla-success' },
+            { label: 'العمولات المدفوعة', value: `$${totalCommissions.toFixed(1)}`, icon: <TrendingUp className="w-5 h-5" />, color: 'bg-wasla-teal/10 text-wasla-teal-dark' },
+            { label: 'معدل التسليم', value: `${((deliveredOrders.length / merchantOrders.length) * 100).toFixed(0)}%`, icon: <ShoppingCart className="w-5 h-5" />, color: 'bg-wasla-gold/10 text-wasla-gold' },
           ].map((stat, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="bg-white rounded-xl p-4 shadow-sm">
               <div className={`w-10 h-10 ${stat.color} rounded-lg flex items-center justify-center mb-3`}>{stat.icon}</div>
@@ -69,7 +71,7 @@ export default function MerchantDashboard({ onNavigate, onProductClick }: Mercha
               { id: 'commissions' as const, label: 'العمولات', icon: <DollarSign className="w-4 h-4" /> },
               { id: 'analytics' as const, label: 'الإحصائيات', icon: <Eye className="w-4 h-4" /> },
             ].map(tab => (
-              <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition whitespace-nowrap ${activeTab === tab.id ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700'}`}>
+              <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition whitespace-nowrap ${activeTab === tab.id ? 'border-wasla-teal text-wasla-teal-dark' : 'border-transparent text-wasla-muted hover:text-wasla-navy'}`}>
                 {tab.icon}{tab.label}
               </button>
             ))}
@@ -80,7 +82,7 @@ export default function MerchantDashboard({ onNavigate, onProductClick }: Mercha
               <div>
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-lg font-bold text-gray-800">إدارة المنتجات</h3>
-                  <button onClick={() => setShowAddProduct(true)} className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm font-medium"><Plus className="w-4 h-4" />إضافة منتج</button>
+                  <button onClick={() => setShowAddProduct(true)} className="flex items-center gap-2 px-4 py-2 bg-wasla-navy text-white rounded-lg hover:bg-wasla-navy/90 transition text-sm font-medium"><Plus className="w-4 h-4" />إضافة منتج</button>
                 </div>
                 <div className="grid gap-4">
                   {merchantProducts.map(product => (
