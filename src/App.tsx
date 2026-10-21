@@ -4,8 +4,9 @@ import MerchantDashboard from './pages/MerchantDashboard';
 import MarketerDashboard from './pages/MarketerDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import ProductPage from './pages/ProductPage';
+import LoginPage from './pages/LoginPage';
 
-type Page = 'landing' | 'merchant' | 'marketer' | 'admin' | 'product';
+type Page = 'landing' | 'merchant' | 'marketer' | 'admin' | 'product' | 'login';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('landing');
@@ -20,6 +21,8 @@ function App() {
     switch (currentPage) {
       case 'landing':
         return <LandingPage onNavigate={setCurrentPage} />;
+      case 'login':
+        return <LoginPage onNavigate={setCurrentPage} />;
       case 'merchant':
         return <MerchantDashboard onNavigate={setCurrentPage} onProductClick={navigateToProduct} />;
       case 'marketer':
